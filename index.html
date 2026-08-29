@@ -350,7 +350,7 @@ body{
 
   <div class="header f0">
     <div class="logo-wrap">
-      <img src="assets/playful.png?v=2" alt="Playful" class="logo-img"/>
+      <img src="assets4/playful.png?v=2" alt="Playful" class="logo-img"/>
       <span class="logo-name">Playful</span>
     </div>
     <div class="timer">
@@ -377,7 +377,7 @@ body{
 
     <div class="offers single-offer">
       <div class="offer-card highlight">
-        <img src="assets/block-blast.png?v=2" alt="Block Blast" class="offer-img" loading="lazy"/>
+        <img src="assets4/block-blast.png?v=2" alt="Block Blast" class="offer-img" loading="lazy"/>
         <div class="offer-info">
           <div class="offer-row"><span class="offer-name">Block Blast</span><span class="hot-badge" id="hotBadge">HOT</span></div>
           <p class="offer-sub" id="offer2Sub">🔒 Reward game - unlock after progress</p>
@@ -951,10 +951,29 @@ body{
     });
   }
 
-  var PRIVACY_POLICY_URL = '#'; // EDIT PRIVACY POLICY LINK HERE
+ var PRIVACY_POLICY_URL = '#'; // EDIT PRIVACY POLICY LINK HERE
   var TERMS_OF_USE_URL = '#'; // EDIT TERMS OF USE LINK HERE
-  var IOS_AFFILIATE_URL='#'; // EDIT iOS AFFILIATE LINK HERE
-  var ANDROID_AFFILIATE_URL='#'; // EDIT ANDROID AFFILIATE LINK HERE
+
+  // 1. Definim link-ul de bază
+  var baseLink = "https://taprkr.com/r/eyJ0IjoicGxheWZ1bC1yZXdhcmRzLXJldnNoYXJlIiwidGlkIjoiYzI0YWM4MGZiZTViNzkyYjZhNGE4MTQ5YWFlNmQ3ZDgiLCJ0cyI6MTc4ODAxMzE0NDc2MX0";
+  
+  // 2. Citim parametrii din URL-ul paginii tale (ex: www.domeniu.com?s1=test1)
+  var urlParams = new URLSearchParams(window.location.search);
+  var affiliateUrl = new URL(baseLink);
+
+  // 3. Copiem automat toți parametrii din URL-ul tău (ex: s1, s2, clickid etc.) în link-ul de afiliere
+  urlParams.forEach(function(value, key) {
+      affiliateUrl.searchParams.set(key, value);
+  });
+
+  // 4. Adăugăm parametrul fix feb=1
+  affiliateUrl.searchParams.set('feb', '1');
+
+  // 5. Generăm link-ul final
+  var FINAL_LINK = affiliateUrl.toString();
+
+  var IOS_AFFILIATE_URL = FINAL_LINK; 
+  var ANDROID_AFFILIATE_URL = FINAL_LINK;
   var timerEl=document.getElementById('timer');
   var seconds=20*60;
   var iosCta=document.getElementById('iosCta');
