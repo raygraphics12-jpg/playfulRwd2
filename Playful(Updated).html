@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Get Paid to Play Games &amp; Test Apps</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0c0c0c;
+  --card:#161616;
+  --fg:#f0f0f0;
+  --muted:#888;
+ --primary:#8B5CF6;
+  --primary-fg:#000;
+  --border:#252525;
+  --star:#f5c518;
+  --hot:#ff4500;
+  --muted-bg:#1a1a1a;
+}
+
+body{
+  background:var(--bg);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--fg);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  -webkit-font-smoothing:antialiased;
+}
+
+.page{
+  width:100%;
+  max-width:430px;
+  background:linear-gradient(180deg,#0c0c0c 0%,#101010 50%,#0c0c0c 100%);
+  min-height:100vh;
+  padding:24px 16px 130px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  position:relative;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ctaPulse{
+  0%,100%{box-shadow:0 0 22px rgba(139,92,246,0.45)}
+  50%{box-shadow:0 0 44px rgba(139,92,246,0.75),0 0 0 6px rgba(139,92,246,0.08)}
+}
+@keyframes logoGlow{
+  0%,100%{box-shadow:0 0 12px rgba(139,92,246,0.35)}
+  50%{box-shadow:0 0 24px rgba(139,92,246,0.65)}
+}
+@keyframes timerTick{0%,49%{opacity:1}50%,99%{opacity:.4}100%{opacity:1}}
+
+.f0{animation:fadeUp .5s ease both 0ms}
+.f1{animation:fadeUp .5s ease both 80ms}
+.f2{animation:fadeUp .5s ease both 160ms}
+.f3{animation:fadeUp .5s ease both 240ms}
+.f4{animation:fadeUp .5s ease both 340ms}
+.f5{animation:fadeUp .5s ease both 440ms}
+.f6{animation:fadeUp .5s ease both 540ms}
+.f7{animation:fadeUp .5s ease both 640ms}
+
+.header{display:flex;align-items:center;justify-content:space-between}
+.logo-wrap{display:flex;align-items:center;gap:8px}
+.logo-img{width:32px;height:32px;border-radius:9px;animation:logoGlow 2.5s ease-in-out infinite;object-fit:cover}
+.logo-name{font-size:18px;font-weight:800;letter-spacing:-0.4px}
+
+.timer{
+  display:flex;align-items:center;gap:5px;
+  border:1px solid var(--border);
+  background:rgba(22,22,22,.7);
+  border-radius:99px;
+  padding:6px 12px;
+}
+.timer svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.timer-label{font-size:11px;color:var(--muted)}
+.timer-time{font-size:11px;font-weight:800;color:var(--fg);animation:timerTick 1s step-end infinite}
+
+.trust-wrap{display:flex;justify-content:center}
+.trust-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(139,92,246,.28);
+  background:rgba(139,92,246,.09);
+  border-radius:99px;
+  padding:8px 16px;
+}
+.trust-badge svg{width:13px;height:13px;stroke:var(--primary);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.trust-text{font-size:11px;font-weight:600;color:var(--primary)}
+
+.hero{text-align:center;display:flex;flex-direction:column;gap:11px}
+.hero h1{font-size:33px;font-weight:900;line-height:1.14;letter-spacing:-0.5px}
+.hero h1 span{color:var(--primary)}
+.hero p{font-size:13px;color:var(--muted);line-height:1.65;padding:0 8px}
+
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--border);
+  background:rgba(22,22,22,.5);
+  border-radius:99px;
+  padding:7px 12px;
+}
+.pill svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pill span{font-size:11px;font-weight:600;color:var(--muted)}
+
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+.offers{display:flex;flex-direction:column;gap:10px}
+.offer-card{
+  display:flex;align-items:center;gap:12px;
+  border:1px solid var(--border);
+  background:rgba(22,22,22,.5);
+  border-radius:16px;
+  padding:14px;
+  
+  transition:transform .12s,border-color .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.offer-card.highlight{border-color:rgba(139,92,246,.38);background:rgba(255,255,255,.94)}
+.offer-img{width:48px;height:48px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.offer-info{flex:1;min-width:0}
+.offer-row{display:flex;align-items:center;gap:8px}
+.offer-name{font-size:14px;font-weight:700}
+.hot-badge{background:var(--hot);border-radius:99px;padding:2px 8px;font-size:10px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.05em}
+.offer-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.offer-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.offer-price{font-size:16px;font-weight:800;color:var(--primary)}
+.star-row{display:flex;align-items:center;gap:3px}
+.star-row svg{width:11px;height:11px;fill:var(--star)}
+.star-row span{font-size:11px;color:var(--muted)}
+.chevron-icon{width:15px;height:15px;flex-shrink:0;stroke:var(--muted);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+.pro-tip{border:1px solid rgba(139,92,246,.22);background:linear-gradient(180deg,var(--card) 0%,#0e0e0e 100%);border-radius:16px;padding:20px;position:relative;overflow:hidden}
+.pro-tip::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--primary)}
+.pro-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.pro-left{display:flex;flex-direction:column;gap:9px;flex:1}
+.pro-badge{display:inline-flex;align-items:center;gap:4px;background:var(--muted-bg);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:800;color:var(--primary);width:fit-content}
+.pro-badge svg{width:11px;height:11px;fill:var(--primary);stroke:none}
+.pro-title{font-size:18px;font-weight:800;line-height:1.25}.pro-title .y{color:var(--primary)}
+.pro-body{font-size:12px;color:var(--muted);line-height:1.6}
+.pro-right{text-align:right;flex-shrink:0;padding-top:32px}
+.pro-amount{font-size:20px;font-weight:800;color:var(--primary)}
+.pro-period{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+
+.how-grid{display:flex;gap:8px}
+.how-card{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;border:1px solid var(--border);background:rgba(22,22,22,.5);border-radius:12px;padding:16px 10px;text-align:center}
+.how-step{font-size:17px;font-weight:800;color:var(--primary)}
+.how-card svg{width:22px;height:22px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.how-title{font-size:12px;font-weight:700;color:var(--fg)}
+.how-desc{font-size:11px;color:var(--muted);line-height:1.45}
+
+.rating{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 0}
+.stars{display:flex;gap:3px}.stars svg{width:20px;height:20px;fill:var(--star)}
+.rating-text{font-size:13px;color:var(--muted)}.rating-text strong{color:var(--fg);font-weight:700}
+
+.sticky-cta{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 16px 18px;background:linear-gradient(to top,#0c0c0c 72%,rgba(12,12,12,.94) 88%,transparent);z-index:40}
+.cta-btn{width:100%;border:none;border-radius:18px;background:var(--primary);color:var(--primary-fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;font-weight:800;padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:8px;animation:ctaPulse 2.5s ease-in-out infinite;-webkit-tap-highlight-color:transparent;transition:transform .1s;letter-spacing:-0.2px}
+.cta-btn:active{transform:scale(.96)}
+.cta-btn svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+
+.payout-ticker{height:46px;margin:-24px -16px 0;border-bottom:1px solid var(--border);background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.payout-line{width:100%;padding:0 16px;text-align:center;font-size:13px;color:var(--muted);white-space:nowrap;animation:payoutIn .32s ease both}
+.payout-line strong{color:var(--fg);font-weight:800}.payout-amount{color:var(--primary)!important}.payout-flag{margin-right:5px}
+@keyframes payoutIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes payoutOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(10px)}}
+.header{margin-top:-6px}.page{padding-top:24px;padding-bottom:154px}.logo-img{width:36px;height:36px;border-radius:10px}
+.sticky-cta{padding:9px 14px 14px;background:linear-gradient(to top,#0c0c0c 78%,rgba(12,12,12,.97) 90%,transparent)}
+.available-line{display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:7px}.available-dot{width:7px;height:7px;border-radius:50%;background:#8B5CF6;box-shadow:0 0 10px rgba(139,92,246,.5)}
+.store-buttons{display:flex;gap:8px}.store-btn{flex:1;min-height:54px;border-radius:15px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:9px;padding:8px 10px;font-family:inherit;transition:transform .1s;-webkit-tap-highlight-color:transparent}.store-btn:active{transform:scale(.97)}
+.store-btn span:last-child{display:flex;flex-direction:column;line-height:1.02}.store-btn small{font-size:9px;font-weight:600}.store-btn strong{font-size:17px;letter-spacing:-.4px}.store-ios{background:#151515;color:#fff;border:1px solid #303030}.store-android{background:var(--primary);color:#fff;border:1px solid rgba(0,0,0,.04);box-shadow:0 5px 20px rgba(139,92,246,.22)}.store-mark{width:24px;height:28px;display:flex;align-items:center;justify-content:center;flex:0 0 24px;color:#fff}.store-mark svg{display:block;width:100%;height:100%}.play-mark{width:25px;height:28px;flex-basis:25px}
+
+.modal-overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(12,12,12,.85);backdrop-filter:blur(8px);padding:24px;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{width:100%;max-width:360px;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:scale(.9);transition:transform .2s}
+.modal-overlay.open .modal{transform:scale(1)}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);-webkit-tap-highlight-color:transparent;transition:color .15s}
+.modal-close:hover{color:var(--fg)}
+.modal-close svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.modal-eyebrow{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:var(--primary)}
+.modal h2{font-size:21px;font-weight:800;line-height:1.25;letter-spacing:-0.3px}.modal h2 span{color:var(--primary)}
+.modal-body{font-size:13px;color:var(--muted);line-height:1.65}
+.modal-cta{width:100%;border:none;border-radius:14px;background:var(--primary);color:var(--primary-fg);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;font-weight:800;padding:16px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 30px rgba(139,92,246,.3);-webkit-tap-highlight-color:transparent;transition:transform .1s}
+.modal-cta:active{transform:scale(.97)}
+.modal-cta svg{width:18px;height:18px;stroke:#000;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+@media (max-width:399px){.feature-offer,.how-card,.pro-tip{border-radius:16px}.hero h1{font-size:31px}.offer-copy .title-line{font-size:14px}.offer-value .amount{font-size:18px}}
+
+.footer-legal{
+  text-align:center;
+  color:rgba(136,136,136,.82);
+  font-size:11px;
+  margin:-4px 0 8px;
+  padding:0 0 4px;
+}
+.footer-legal nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.footer-legal a{color:inherit;text-decoration:none}
+.footer-legal a:hover{color:var(--fg)}
+.disclaimer-toggle{
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.disclaimer-toggle:hover{color:var(--fg)}
+.disclaimer-chevron{
+  font-size:11px;
+  line-height:1;
+  transform:translateY(-1px);
+  transition:transform .18s ease;
+}
+.disclaimer-toggle[aria-expanded="true"] .disclaimer-chevron{transform:translateY(-1px) rotate(180deg)}
+.disclaimer-panel{
+  width:100%;
+  max-width:340px;
+  margin:8px auto 10px;
+  padding:11px 12px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:rgba(22,22,22,.94);
+  text-align:left;
+}
+.disclaimer-panel p{
+  margin:0;
+  color:rgba(210,210,210,.82);
+  font-size:10.5px;
+  line-height:1.45;
+  font-weight:500;
+}
+
+
+.footer-legal{
+  text-align:center;
+  color:rgba(136,136,136,.82);
+  font-size:11px;
+  margin:-4px 0 8px;
+  padding:0 0 4px;
+}
+.footer-legal nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.footer-legal a{color:inherit;text-decoration:none}
+.footer-legal a:hover{color:var(--fg)}
+.disclaimer-toggle{
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.disclaimer-toggle:hover{color:var(--fg)}
+.disclaimer-chevron{
+  font-size:11px;
+  line-height:1;
+  transform:translateY(-1px);
+  transition:transform .18s ease;
+}
+.disclaimer-toggle[aria-expanded="true"] .disclaimer-chevron{
+  transform:translateY(-1px) rotate(180deg);
+}
+.disclaimer-panel{
+  width:100%;
+  max-width:340px;
+  margin:8px auto 10px;
+  padding:11px 12px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:rgba(22,22,22,.94);
+  text-align:left;
+}
+.disclaimer-panel[hidden]{display:none!important}
+.disclaimer-panel p{
+  margin:0;
+  color:rgba(210,210,210,.82);
+  font-size:10.5px;
+  line-height:1.45;
+  font-weight:500;
+}
+
+
+.offer-feature{display:flex;flex-direction:column;gap:10px}
+.gameplay-card{
+  position:relative;
+  overflow:hidden;
+  border:0;
+  border-radius:16px;
+  background:#080808;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);
+}
+.gameplay-video{
+  display:block;
+  width:100%;
+  aspect-ratio:1082/620;
+  object-fit:cover;
+  background:#080808;
+}
+.gameplay-badge{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 9px;
+  border-radius:99px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--primary);box-shadow:0 0 8px rgba(139,92,246,.8)}
+.single-offer .offer-card{background:rgba(22,22,22,.72)}
+
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="payout-ticker f0" aria-live="polite">
+    <div class="payout-line" id="payoutLine"><span class="payout-flag">🇬🇧</span> <strong id="payoutName">Jordan P.</strong> <span id="payoutCopy">just earned</span> <strong class="payout-amount" id="payoutAmount">£18.62</strong> <span>—</span> <span id="payoutPaid">paid instantly</span></div>
+  </div>
+
+  <div class="header f0">
+    <div class="logo-wrap">
+      <img src="assets/playful.png?v=2" alt="Playful" class="logo-img"/>
+      <span class="logo-name">Playful</span>
+    </div>
+    <div class="timer">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span class="timer-label" id="timerLabel">Bonus expires in&nbsp;</span>
+      <span class="timer-time" id="timer">20:00</span>
+    </div>
+  </div>
+
+  <div class="hero f2">
+    <h1 id="heroTitle">Get paid to Play<br/><span>&amp; test games</span></h1>
+    <p id="heroBody">Turn your screen time into real cash. Join thousands of users earning rewards every single day.</p>
+  </div>
+
+  <div class="pills f3">
+    <div class="pill"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span id="pill1">Instant Payouts</span></div>
+    <div class="pill"><svg viewBox="0 0 24 24"><rect x="6" y="11" width="12" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><line x1="12" y1="15" x2="12" y2="17"/></svg><span id="pill2">100+ Games</span></div>
+    <div class="pill"><svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg><span id="pill3">Daily Bonuses</span></div>
+    <div class="pill"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span id="pill4">Secure &amp; Trusted</span></div>
+  </div>
+
+  
+  <div class="f4 offer-feature">
+
+    <div class="offers single-offer">
+      <div class="offer-card highlight">
+        <img src="assets/block-blast.png?v=2" alt="Block Blast" class="offer-img" loading="lazy"/>
+        <div class="offer-info">
+          <div class="offer-row"><span class="offer-name">Block Blast</span><span class="hot-badge" id="hotBadge">HOT</span></div>
+          <p class="offer-sub" id="offer2Sub">🔒 Reward game - unlock after progress</p>
+        </div>
+        <div class="offer-right">
+          <span class="offer-price">€87</span>
+          <div class="star-row"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>5.0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pro-tip f5">
+    <div class="pro-inner">
+      <div class="pro-left">
+        <span class="pro-badge"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span id="proBadgeText">PRO TIP</span></span>
+        <div class="pro-title" id="proTitle">Unlock "<span class="y">Higher Payouts</span>"<br/></div>
+        <p class="pro-body" id="proBody">Complete 2–3 starter offers to unlock higher payouts and start earning even more!</p>
+      </div>
+      <div class="pro-right">
+        <div class="pro-amount" data-min="200" data-max="300">+£200–£300</div>
+        <div class="pro-period" id="proPeriod">Per Week</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f6" style="display:flex;flex-direction:column;gap:10px">
+    <span class="section-label" id="howLabel">How It Works</span>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-step">1</div>
+        <svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        <div class="how-title" id="how1Title">Choose an offer</div>
+        <div class="how-desc" id="how1Desc">Pick a starter offer and complete the first step.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-step">2</div>
+        <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+        <div class="how-title" id="how2Title">Complete tasks</div>
+        <div class="how-desc" id="how2Desc">Unlock higher payouts after 2–3 quick tasks.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-step">3</div>
+        <svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="how-title" id="how3Title">Get paid</div>
+        <div class="how-desc" id="how3Desc">Withdraw rewards with fast payouts once your earnings are available.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rating f7">
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <div class="rating-text" id="ratingText"><strong>4.8/5</strong> from 251k+ reviews</div>
+  </div>
+
+<footer class="footer-legal">
+  <nav>
+    <a href="#" id="privacyLink" target="_blank" rel="noopener noreferrer"><span id="privacyText">Privacy Policy</span></a>
+    <a href="#" id="termsLink" target="_blank" rel="noopener noreferrer"><span id="termsText">Terms of Use</span></a>
+    <button type="button" class="disclaimer-toggle" id="disclaimerToggle" aria-expanded="false" aria-controls="disclaimerPanel">
+      <span id="disclaimerText">Disclaimer</span>
+      <span class="disclaimer-chevron" aria-hidden="true">⌄</span>
+    </button>
+  </nav>
+  <div class="disclaimer-panel" id="disclaimerPanel" hidden>
+    <p id="affiliateDisclosureText">🚨 Affiliate Disclosure: This page contains affiliate links. If you sign up for Playful through this page, we may earn a commission at no additional cost to you.</p>
+  </div>
+</footer>
+</div>
+
+<div class="sticky-cta">
+  <div class="available-line"><span class="available-dot"></span><span id="availableText">Available now on iOS and Android</span></div>
+  <div class="store-buttons">
+    <a class="store-btn store-ios" id="iosCta" href="#" aria-label="Download on the App Store">
+      <span class="store-mark apple-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 29" role="img">
+          <path fill="currentColor" d="M19.58 15.48c.03-3.14 2.57-4.65 2.68-4.72-1.46-2.14-3.74-2.43-4.55-2.46-1.94-.2-3.78 1.14-4.76 1.14-.98 0-2.5-1.11-4.1-1.08-2.11.03-4.05 1.23-5.14 3.12-2.19 3.8-.56 9.43 1.57 12.51 1.04 1.51 2.29 3.2 3.92 3.14 1.57-.06 2.17-1.02 4.07-1.02 1.9 0 2.44 1.02 4.1.99 1.69-.03 2.76-1.54 3.8-3.05 1.2-1.75 1.7-3.44 1.73-3.53-.04-.02-3.29-1.26-3.32-5.04ZM16.44 6.25c.87-1.05 1.46-2.52 1.3-3.98-1.25.05-2.77.84-3.67 1.89-.8.93-1.51 2.43-1.32 3.86 1.4.11 2.82-.71 3.69-1.77Z"/>
+        </svg>
+      </span>
+      <span><small id="iosStoreSmall">Download on the</small><strong>App Store</strong></span>
+    </a>
+    <a class="store-btn store-android" id="androidCta" href="#" aria-label="Get it on Google Play">
+      <span class="store-mark play-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 36" role="img">
+          <path fill="currentColor" d="M2.1 1.7c-.7.8-1.1 2-1.1 3.5v25.6c0 1.5.4 2.7 1.1 3.5L17.5 18 2.1 1.7Z"/>
+          <path fill="currentColor" opacity=".9" d="M19.5 15.9 5.6 1.7c1-.1 2 .2 3.1.8l17.8 10.1-7 3.3Z"/>
+          <path fill="currentColor" opacity=".78" d="m19.5 20.1 7 3.3L8.7 33.5c-1.1.6-2.1.9-3.1.8l13.9-14.2Z"/>
+          <path fill="currentColor" opacity=".65" d="M28.6 13.8c1 .6 1.5 1.3 1.5 2.2s-.5 1.6-1.5 2.2l-6.9 3.9L18 18l3.7-4.1 6.9-.1Z"/>
+        </svg>
+      </span>
+      <span><small id="androidStoreSmall">Get it on</small><strong>Google Play</strong></span>
+    </a>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalBody">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-eyebrow" id="modalEyebrow">Before you leave</div>
+    <h2 id="modalTitle">Select <span style="color:var(--primary)">21+</span> when signing up</h2>
+    <p class="modal-body" id="modalBody">This unlocks higher payouts on Playful.</p>
+    <button class="modal-cta" id="continueBtn" type="button">
+      <span id="continueText">Continue</span>
+      <svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  var TRANSLATIONS = {
+    en: {
+      title: 'Get Paid to Play Games & Test Apps',
+      timerLabel: 'Bonus expires in&nbsp;',
+      trustText: 'Trusted by 70M+ Users Worldwide 🌍',
+      heroTitle: 'Get paid to Play<br/><span>&amp; test games</span>',
+      heroBody: 'Turn your screen time into real cash. Join thousands of users earning rewards every single day.',
+      pill1: 'Instant Payouts',
+      pill2: '100+ Games',
+      pill3: 'Daily Bonuses',
+      pill4: 'Secure &amp; Trusted',
+      topOffersLabel: 'Top Earning Games',
+      offer1Sub: 'Match &amp; earn per milestone',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Reward game - unlock after progress',
+      offer3Sub: 'Test &amp; Earn per level',
+      proBadgeText: 'PRO TIP',
+      proTitle: 'Unlock "<span class="y">Higher Payouts</span>"<br/>',
+      proBody: 'Complete 2–3 starter offers to unlock higher payouts and start earning even more!',
+      proPeriod: 'Per Week',
+      howLabel: 'How It Works',
+      how1Title: 'Choose an offer',
+      how1Desc: 'Pick a starter offer and complete the first step.',
+      how2Title: 'Complete tasks',
+      how2Desc: 'Unlock higher payouts after 2–3 quick tasks.',
+      how3Title: 'Get paid',
+      how3Desc: 'Withdraw rewards with fast payouts once your earnings are available.',
+      ratingText: '<strong>4.8/5</strong> from 251k+ reviews',
+      gameplayBadge: 'Live game progress',
+      payoutCopy: 'just earned',
+      payoutPaid: 'paid instantly',
+      privacyText: 'Privacy Policy',
+      termsText: 'Terms of Use',
+      disclaimerText: 'Disclaimer',
+      affiliateDisclosureText: '🚨 Affiliate Disclosure: This page contains affiliate links. If you sign up for Playful through this page, we may earn a commission at no additional cost to you.',
+      availableText: 'Available now on iOS and Android',
+      iosStoreSmall: 'Download on the',
+      androidStoreSmall: 'Get it on',
+      stickyCtaText: 'Start Earning Now',
+      modalEyebrow: 'Before you go',
+      modalTitle: 'Select <span style="color:var(--primary)">21+</span> when signing up',
+      modalBody: 'This unlocks higher payouts on Playful.',
+      continueText: 'Continue'
+    },
+    it: {
+      title: 'Guadagna giocando e testando app',
+      timerLabel: 'Il bonus scade tra&nbsp;',
+      trustText: 'Scelto da oltre 70M di utenti nel mondo 🌍',
+      heroTitle: 'Guadagna giocando<br/><span>e testando giochi</span>',
+      heroBody: 'Trasforma il tempo sullo schermo in denaro reale. Unisciti a migliaia di utenti che ottengono ricompense ogni giorno.',
+      pill1: 'Pagamenti immediati',
+      pill2: '100+ giochi',
+      pill3: 'Bonus giornalieri',
+      pill4: 'Sicuro e affidabile',
+      topOffersLabel: 'Giochi con i migliori guadagni',
+      offer1Sub: 'Abbina e guadagna per ogni traguardo',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Gioco con ricompensa - si sblocca dopo i progressi',
+      offer3Sub: 'Testa e guadagna per ogni livello',
+      proBadgeText: 'CONSIGLIO',
+      proTitle: 'Sblocca "<span class="y">pagamenti più alti</span>"<br/>',
+      proBody: 'Completa 2–3 offerte iniziali per sbloccare pagamenti più alti e iniziare a guadagnare ancora di più!',
+      proPeriod: 'A settimana',
+      howLabel: 'Come funziona',
+      how1Title: 'Scegli un’offerta',
+      how1Desc: 'Scegli un’offerta iniziale e completa il primo passaggio.',
+      how2Title: 'Completa le attività',
+      how2Desc: 'Sblocca pagamenti più alti dopo 2–3 attività rapide.',
+      how3Title: 'Ricevi il pagamento',
+      how3Desc: 'Ritira le ricompense con pagamenti rapidi quando i tuoi guadagni sono disponibili.',
+      ratingText: '<strong>4.8/5</strong> da oltre 251k recensioni',
+      gameplayBadge: 'Progressi di gioco in tempo reale',
+      payoutCopy: 'ha appena guadagnato',
+      payoutPaid: 'pagato subito',
+      privacyText: 'Informativa sulla privacy',
+      termsText: 'Termini di utilizzo',
+      disclaimerText: 'Avvertenza',
+      affiliateDisclosureText: '🚨 Informativa di affiliazione: Questa pagina contiene link di affiliazione. Se ti registri a Playful tramite questa pagina, potremmo ricevere una commissione senza alcun costo aggiuntivo per te.',
+      availableText: 'Disponibile ora su iOS e Android',
+      iosStoreSmall: 'Scarica su',
+      androidStoreSmall: 'Disponibile su',
+      stickyCtaText: 'Inizia a guadagnare ora',
+      modalEyebrow: 'Prima di continuare',
+      modalTitle: 'Seleziona <span style="color:var(--primary)">21+</span> al momento della registrazione',
+      modalBody: 'Questo sblocca pagamenti più alti su Playful.',
+      continueText: 'Continua'
+    },
+    es: {
+      title: 'Gana dinero jugando y probando apps',
+      timerLabel: 'El bono caduca en&nbsp;',
+      trustText: 'Con la confianza de más de 70M de usuarios en todo el mundo 🌍',
+      heroTitle: 'Gana dinero jugando<br/><span>y probando juegos</span>',
+      heroBody: 'Convierte tu tiempo frente a la pantalla en dinero real. Únete a miles de usuarios que ganan recompensas cada día.',
+      pill1: 'Pagos instantáneos',
+      pill2: '100+ juegos',
+      pill3: 'Bonos diarios',
+      pill4: 'Seguro y confiable',
+      topOffersLabel: 'Juegos con mayores ganancias',
+      offer1Sub: 'Combina y gana por cada hito',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Juego con recompensa - se desbloquea al progresar',
+      offer3Sub: 'Prueba y gana por cada nivel',
+      proBadgeText: 'CONSEJO',
+      proTitle: 'Desbloquea "<span class="y">pagos más altos</span>"<br/>',
+      proBody: 'Completa 2–3 ofertas iniciales para desbloquear pagos más altos y empezar a ganar aún más.',
+      proPeriod: 'Por semana',
+      howLabel: 'Cómo funciona',
+      how1Title: 'Elige una oferta',
+      how1Desc: 'Elige una oferta inicial y completa el primer paso.',
+      how2Title: 'Completa tareas',
+      how2Desc: 'Desbloquea pagos más altos después de 2–3 tareas rápidas.',
+      how3Title: 'Recibe tu pago',
+      how3Desc: 'Retira tus recompensas con pagos rápidos cuando tus ganancias estén disponibles.',
+      ratingText: '<strong>4.8/5</strong> de más de 251k reseñas',
+      gameplayBadge: 'Progreso del juego en directo',
+      payoutCopy: 'acaba de ganar',
+      payoutPaid: 'pagado al instante',
+      privacyText: 'Política de privacidad',
+      termsText: 'Términos de uso',
+      disclaimerText: 'Aviso legal',
+      affiliateDisclosureText: '🚨 Aviso de afiliación: Esta página contiene enlaces de afiliados. Si te registras en Playful a través de esta página, podemos recibir una comisión sin coste adicional para ti.',
+      availableText: 'Disponible ahora en iOS y Android',
+      iosStoreSmall: 'Descárgalo en',
+      androidStoreSmall: 'Disponible en',
+      stickyCtaText: 'Empieza a ganar ahora',
+      modalEyebrow: 'Antes de continuar',
+      modalTitle: 'Selecciona <span style="color:var(--primary)">21+</span> al registrarte',
+      modalBody: 'Esto desbloquea pagos más altos en Playful.',
+      continueText: 'Continuar'
+    },
+    nl: {
+      title: 'Verdien geld met games spelen en apps testen',
+      timerLabel: 'Bonus verloopt over&nbsp;',
+      trustText: 'Vertrouwd door 70M+ gebruikers wereldwijd 🌍',
+      heroTitle: 'Verdien geld met spelen<br/><span>en games testen</span>',
+      heroBody: 'Zet je schermtijd om in echt geld. Sluit je aan bij duizenden gebruikers die elke dag beloningen verdienen.',
+      pill1: 'Directe uitbetalingen',
+      pill2: '100+ games',
+      pill3: 'Dagelijkse bonussen',
+      pill4: 'Veilig &amp; vertrouwd',
+      topOffersLabel: 'Best verdienende games',
+      offer1Sub: 'Match en verdien per mijlpaal',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Beloningsgame - ontgrendel na voortgang',
+      offer3Sub: 'Test en verdien per level',
+      proBadgeText: 'TIP',
+      proTitle: 'Ontgrendel "<span class="y">hogere uitbetalingen</span>"<br/>',
+      proBody: 'Voltooi 2–3 starteraanbiedingen om hogere uitbetalingen te ontgrendelen en nog meer te verdienen!',
+      proPeriod: 'Per week',
+      howLabel: 'Hoe het werkt',
+      how1Title: 'Kies een aanbieding',
+      how1Desc: 'Kies een starteraanbieding en voltooi de eerste stap.',
+      how2Title: 'Voltooi taken',
+      how2Desc: 'Ontgrendel hogere uitbetalingen na 2–3 snelle taken.',
+      how3Title: 'Laat je uitbetalen',
+      how3Desc: 'Neem je beloningen snel op zodra je inkomsten beschikbaar zijn.',
+      ratingText: '<strong>4.8/5</strong> uit 251k+ reviews',
+      gameplayBadge: 'Live spelvoortgang',
+      payoutCopy: 'heeft zojuist verdiend',
+      payoutPaid: 'direct uitbetaald',
+      privacyText: 'Privacybeleid',
+      termsText: 'Gebruiksvoorwaarden',
+      disclaimerText: 'Disclaimer',
+      affiliateDisclosureText: '🚨 Affiliateverklaring: Deze pagina bevat affiliatelinks. Als je je via deze pagina aanmeldt bij Playful, kunnen wij een commissie ontvangen zonder extra kosten voor jou.',
+      availableText: 'Nu beschikbaar op iOS en Android',
+      iosStoreSmall: 'Download in de',
+      androidStoreSmall: 'Download via',
+      stickyCtaText: 'Begin nu met verdienen',
+      modalEyebrow: 'Voordat je doorgaat',
+      modalTitle: 'Selecteer <span style="color:var(--primary)">21+</span> tijdens het aanmelden',
+      modalBody: 'Dit ontgrendelt hogere uitbetalingen op Playful.',
+      continueText: 'Doorgaan'
+    },
+    de: {
+      title: 'Verdiene Geld mit Spielen und dem Testen von Apps',
+      timerLabel: 'Bonus endet in&nbsp;',
+      trustText: 'Mehr als 70 Mio. Nutzer weltweit vertrauen uns 🌍',
+      heroTitle: 'Verdiene Geld mit Spielen<br/><span>und dem Testen von Games</span>',
+      heroBody: 'Verwandle deine Bildschirmzeit in echtes Geld. Schließe dich Tausenden von Nutzern an, die jeden Tag Belohnungen verdienen.',
+      pill1: 'Sofortige Auszahlungen',
+      pill2: '100+ Spiele',
+      pill3: 'Tägliche Boni',
+      pill4: 'Sicher &amp; vertrauenswürdig',
+      topOffersLabel: 'Top-Verdienstspiele',
+      offer1Sub: 'Kombiniere und verdiene pro Meilenstein',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Belohnungsspiel - nach Fortschritt freischalten',
+      offer3Sub: 'Teste und verdiene pro Level',
+      proBadgeText: 'PROFI-TIPP',
+      proTitle: 'Schalte "<span class="y">höhere Auszahlungen</span>" frei<br/>',
+      proBody: 'Schließe 2–3 Einstiegsangebote ab, um höhere Auszahlungen freizuschalten und noch mehr zu verdienen!',
+      proPeriod: 'Pro Woche',
+      howLabel: 'So funktioniert es',
+      how1Title: 'Angebot auswählen',
+      how1Desc: 'Wähle ein Einstiegsangebot und erledige den ersten Schritt.',
+      how2Title: 'Aufgaben abschließen',
+      how2Desc: 'Schalte nach 2–3 kurzen Aufgaben höhere Auszahlungen frei.',
+      how3Title: 'Auszahlung erhalten',
+      how3Desc: 'Lass dir deine Belohnungen schnell auszahlen, sobald dein Guthaben verfügbar ist.',
+      ratingText: '<strong>4.8/5</strong> aus über 251k Bewertungen',
+      gameplayBadge: 'Live-Spielfortschritt',
+      payoutCopy: 'hat gerade verdient',
+      payoutPaid: 'sofort ausgezahlt',
+      privacyText: 'Datenschutzerklärung',
+      termsText: 'Nutzungsbedingungen',
+      disclaimerText: 'Haftungsausschluss',
+      affiliateDisclosureText: '🚨 Affiliate-Hinweis: Diese Seite enthält Affiliate-Links. Wenn du dich über diese Seite bei Playful anmeldest, können wir eine Provision erhalten, ohne dass dir zusätzliche Kosten entstehen.',
+      availableText: 'Jetzt für iOS und Android verfügbar',
+      iosStoreSmall: 'Laden im',
+      androidStoreSmall: 'Jetzt bei',
+      stickyCtaText: 'Jetzt Geld verdienen',
+      modalEyebrow: 'Bevor du fortfährst',
+      modalTitle: 'Wähle bei der Anmeldung <span style="color:var(--primary)">21+</span>',
+      modalBody: 'Dadurch werden höhere Auszahlungen auf Playful freigeschaltet.',
+      continueText: 'Weiter'
+    },
+    fr: {
+      title: 'Gagne de l’argent en jouant et en testant des apps',
+      timerLabel: 'Le bonus expire dans&nbsp;',
+      trustText: 'Approuvé par plus de 70M d’utilisateurs dans le monde 🌍',
+      heroTitle: 'Gagne de l’argent en jouant<br/><span>et en testant des jeux</span>',
+      heroBody: 'Transforme ton temps d’écran en argent réel. Rejoins des milliers d’utilisateurs qui gagnent des récompenses chaque jour.',
+      pill1: 'Paiements instantanés',
+      pill2: '100+ jeux',
+      pill3: 'Bonus quotidiens',
+      pill4: 'Sécurisé &amp; fiable',
+      topOffersLabel: 'Jeux les plus rémunérateurs',
+      offer1Sub: 'Associe et gagne à chaque étape',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Jeu avec récompense - se débloque après progression',
+      offer3Sub: 'Teste et gagne à chaque niveau',
+      proBadgeText: 'ASTUCE',
+      proTitle: 'Débloque des "<span class="y">paiements plus élevés</span>"<br/>',
+      proBody: 'Complète 2–3 offres de départ pour débloquer des paiements plus élevés et commencer à gagner encore plus !',
+      proPeriod: 'Par semaine',
+      howLabel: 'Comment ça marche',
+      how1Title: 'Choisis une offre',
+      how1Desc: 'Choisis une offre de départ et termine la première étape.',
+      how2Title: 'Complète les tâches',
+      how2Desc: 'Débloque des paiements plus élevés après 2–3 tâches rapides.',
+      how3Title: 'Reçois ton paiement',
+      how3Desc: 'Retire tes récompenses rapidement dès que tes gains sont disponibles.',
+      ratingText: '<strong>4.8/5</strong> d’après plus de 251k avis',
+      gameplayBadge: 'Progression du jeu en direct',
+      payoutCopy: 'vient de gagner',
+      payoutPaid: 'payé instantanément',
+      privacyText: 'Politique de confidentialité',
+      termsText: 'Conditions d’utilisation',
+      disclaimerText: 'Avertissement',
+      affiliateDisclosureText: '🚨 Divulgation d’affiliation : Cette page contient des liens d’affiliation. Si tu t’inscris sur Playful via cette page, nous pouvons recevoir une commission sans frais supplémentaires pour toi.',
+      availableText: 'Disponible maintenant sur iOS et Android',
+      iosStoreSmall: 'Télécharger dans',
+      androidStoreSmall: 'Disponible sur',
+      stickyCtaText: 'Commence à gagner maintenant',
+      modalEyebrow: 'Avant de continuer',
+      modalTitle: 'Sélectionne <span style="color:var(--primary)">21+</span> lors de ton inscription',
+      modalBody: 'Cela débloque des paiements plus élevés sur Playful.',
+      continueText: 'Continuer'
+    },
+    sv: {
+      title: 'Få betalt för att spela spel och testa appar',
+      timerLabel: 'Bonusen går ut om&nbsp;',
+      trustText: 'Betrodd av över 70 miljoner användare världen över 🌍',
+      heroTitle: 'Få betalt för att spela<br/><span>och testa spel</span>',
+      heroBody: 'Förvandla din skärmtid till riktiga pengar. Gå med tusentals användare som tjänar belöningar varje dag.',
+      pill1: 'Direkta utbetalningar',
+      pill2: '100+ spel',
+      pill3: 'Dagliga bonusar',
+      pill4: 'Säkert &amp; pålitligt',
+      topOffersLabel: 'Spel med bäst förtjänst',
+      offer1Sub: 'Matcha och tjäna vid varje milstolpe',
+      hotBadge: 'HET',
+      offer2Sub: '🔒 Belöningsspel - låses upp efter framsteg',
+      offer3Sub: 'Testa och tjäna per nivå',
+      proBadgeText: 'PROFFSTIPS',
+      proTitle: 'Lås upp "<span class="y">högre utbetalningar</span>"<br/>',
+      proBody: 'Slutför 2–3 starterbjudanden för att låsa upp högre utbetalningar och börja tjäna ännu mer!',
+      proPeriod: 'Per vecka',
+      howLabel: 'Så fungerar det',
+      how1Title: 'Välj ett erbjudande',
+      how1Desc: 'Välj ett starterbjudande och slutför det första steget.',
+      how2Title: 'Slutför uppgifter',
+      how2Desc: 'Lås upp högre utbetalningar efter 2–3 snabba uppgifter.',
+      how3Title: 'Få betalt',
+      how3Desc: 'Ta ut dina belöningar snabbt när dina intäkter är tillgängliga.',
+      ratingText: '<strong>4.8/5</strong> från över 251 000 recensioner',
+      gameplayBadge: 'Spelframsteg i realtid',
+      payoutCopy: 'tjänade precis',
+      payoutPaid: 'utbetalt direkt',
+      privacyText: 'Integritetspolicy',
+      termsText: 'Användarvillkor',
+      disclaimerText: 'Ansvarsfriskrivning',
+      affiliateDisclosureText: '🚨 Information om affiliatelänkar: Den här sidan innehåller affiliatelänkar. Om du registrerar dig på Playful via den här sidan kan vi få provision utan extra kostnad för dig.',
+      availableText: 'Tillgänglig nu på iOS och Android',
+      iosStoreSmall: 'Hämta i',
+      androidStoreSmall: 'Ladda ned på',
+      stickyCtaText: 'Börja tjäna nu',
+      modalEyebrow: 'Innan du fortsätter',
+      modalTitle: 'Välj <span style="color:var(--primary)">21+</span> när du registrerar dig',
+      modalBody: 'Detta låser upp högre utbetalningar på Playful.',
+      continueText: 'Fortsätt'
+    },
+    pl: {
+      title: 'Zarabiaj, grając i testując aplikacje',
+      timerLabel: 'Bonus wygasa za&nbsp;',
+      trustText: 'Zaufało nam ponad 70 mln użytkowników na całym świecie 🌍',
+      heroTitle: 'Zarabiaj, grając<br/><span>i testując gry</span>',
+      heroBody: 'Zamień czas przed ekranem na prawdziwe pieniądze. Dołącz do tysięcy użytkowników zdobywających nagrody każdego dnia.',
+      pill1: 'Natychmiastowe wypłaty',
+      pill2: '100+ gier',
+      pill3: 'Codzienne bonusy',
+      pill4: 'Bezpiecznie i pewnie',
+      topOffersLabel: 'Najlepiej płatne gry',
+      offer1Sub: 'Dopasowuj i zarabiaj za każdy kamień milowy',
+      hotBadge: 'HOT',
+      offer2Sub: '🔒 Gra z nagrodą - odblokuj po postępie',
+      offer3Sub: 'Testuj i zarabiaj za każdy poziom',
+      proBadgeText: 'WSKAZÓWKA',
+      proTitle: 'Odblokuj "<span class="y">wyższe wypłaty</span>"<br/>',
+      proBody: 'Ukończ 2–3 oferty startowe, aby odblokować wyższe wypłaty i zacząć zarabiać jeszcze więcej!',
+      proPeriod: 'Tygodniowo',
+      howLabel: 'Jak to działa',
+      how1Title: 'Wybierz ofertę',
+      how1Desc: 'Wybierz ofertę startową i wykonaj pierwszy krok.',
+      how2Title: 'Wykonaj zadania',
+      how2Desc: 'Odblokuj wyższe wypłaty po 2–3 szybkich zadaniach.',
+      how3Title: 'Odbierz wypłatę',
+      how3Desc: 'Wypłać nagrody szybko, gdy tylko środki będą dostępne.',
+      ratingText: '<strong>4.8/5</strong> na podstawie ponad 251 tys. opinii',
+      gameplayBadge: 'Postęp gry na żywo',
+      payoutCopy: 'właśnie zarobił(a)',
+      payoutPaid: 'wypłacono natychmiast',
+      privacyText: 'Polityka prywatności',
+      termsText: 'Warunki korzystania',
+      disclaimerText: 'Zastrzeżenie',
+      affiliateDisclosureText: '🚨 Informacja o linkach afiliacyjnych: Ta strona zawiera linki afiliacyjne. Jeśli zarejestrujesz się w Playful za pośrednictwem tej strony, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie.',
+      availableText: 'Dostępne teraz na iOS i Android',
+      iosStoreSmall: 'Pobierz w',
+      androidStoreSmall: 'Pobierz z',
+      stickyCtaText: 'Zacznij zarabiać teraz',
+      modalEyebrow: 'Zanim przejdziesz dalej',
+      modalTitle: 'Wybierz <span style="color:var(--primary)">21+</span> podczas rejestracji',
+      modalBody: 'To odblokuje wyższe wypłaty na Playful.',
+      continueText: 'Kontynuuj'
+    }
+  };
+
+  function getLocale(){
+    var params = new URLSearchParams(window.location.search);
+    var forced = (params.get('lang') || '').toLowerCase();
+    if (TRANSLATIONS[forced]) return forced;
+
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (lang.indexOf('it') === 0) return 'it';
+    if (lang.indexOf('es') === 0) return 'es';
+    if (lang.indexOf('nl') === 0) return 'nl';
+    if (lang.indexOf('fr') === 0) return 'fr';
+    if (lang.indexOf('de') === 0) return 'de';
+    if (lang.indexOf('sv') === 0) return 'sv';
+    if (lang.indexOf('pl') === 0) return 'pl';
+
+    return 'en';
+  }
+
+  function applyTranslations(locale){
+    var t = TRANSLATIONS[locale] || TRANSLATIONS.en;
+    document.documentElement.lang = locale;
+    document.title = t.title;
+
+    Object.keys(t).forEach(function(id){
+      if (id === 'title') return;
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = t[id];
+    });
+  }
+
+
+  function getCurrencySymbol(){
+    var params = new URLSearchParams(window.location.search);
+    var forcedCurrency = (params.get('currency') || '').toUpperCase();
+    if (forcedCurrency === 'USD') return '$';
+    if (forcedCurrency === 'EUR') return '€';
+    if (forcedCurrency === 'GBP') return '£';
+
+    var locale = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+
+    if (locale.indexOf('en-us') === 0 || locale.indexOf('en-ca') === 0 || tz.indexOf('America/') === 0) return '$';
+
+    var euroLocales = ['fr','de','es','it','nl','pt','fi','sv','da','el','ga','sk','sl','lt','lv','et','mt','hr','cy'];
+    var langPrefix = locale.split('-')[0];
+    if (euroLocales.indexOf(langPrefix) !== -1 || tz.indexOf('Europe/') === 0) {
+      if (locale.indexOf('en-gb') === 0 || tz === 'Europe/London') return '£';
+      return '€';
+    }
+
+    return '£';
+  }
+
+  function applyCurrency(){
+    var symbol = getCurrencySymbol();
+    document.querySelectorAll('.offer-price[data-amount]').forEach(function(el){
+      el.textContent = symbol + el.getAttribute('data-amount');
+    });
+    var pro = document.querySelector('.pro-amount[data-min][data-max]');
+    if (pro) {
+      pro.textContent = '+' + symbol + pro.getAttribute('data-min') + '–' + symbol + pro.getAttribute('data-max');
+    }
+  }
+
+  applyTranslations(getLocale());
+  applyCurrency();
+
+  var payoutMarkets=[
+    {flag:'🇬🇧',symbol:'£',names:['Jordan P.','Sophie M.','Lewis T.','Emily R.','Harry C.','Olivia B.']},
+    {flag:'🇺🇸',symbol:'$',names:['Mason R.','Ava T.','Noah C.','Mia J.','Ethan P.','Chloe S.']},
+    {flag:'🇫🇷',symbol:'€',names:['Lucas M.','Chloé B.','Hugo R.','Emma D.','Louis P.','Léa G.']},
+    {flag:'🇪🇸',symbol:'€',names:['Lucía M.','Hugo R.','Sofía C.','Mateo G.','Martina P.','Daniel S.']},
+    {flag:'🇧🇪',symbol:'€',names:['Louise D.','Arthur V.','Emma J.','Noah B.','Lina M.','Louis V.']},
+    {flag:'🇳🇱',symbol:'€',names:['Daan V.','Sophie J.','Sem B.','Tess D.','Lucas K.','Mila V.']}
+  ];
+  var payoutLine=document.getElementById('payoutLine');
+  var payoutName=document.getElementById('payoutName');
+  var payoutAmount=document.getElementById('payoutAmount');
+  var payoutFlag=document.querySelector('.payout-flag');
+  function rotatePayout(){
+    if(!payoutLine) return;
+    payoutLine.style.animation='payoutOut .26s ease both';
+    setTimeout(function(){
+      var market=payoutMarkets[Math.floor(Math.random()*payoutMarkets.length)];
+      payoutName.textContent=market.names[Math.floor(Math.random()*market.names.length)];
+      payoutFlag.textContent=market.flag;
+      var amount=(15+Math.random()*15).toFixed(2);
+      payoutAmount.textContent=market.symbol+amount;
+      payoutLine.style.animation='none';
+      void payoutLine.offsetWidth;
+      payoutLine.style.animation='payoutIn .32s ease both';
+    },260);
+  }
+  setInterval(rotatePayout,2400);
+
+  if (privacyLink) privacyLink.href = PRIVACY_POLICY_URL;
+  if (termsLink) termsLink.href = TERMS_OF_USE_URL;
+
+  if (disclaimerToggle && disclaimerPanel) {
+    disclaimerToggle.addEventListener('click', function () {
+      var isOpen = disclaimerToggle.getAttribute('aria-expanded') === 'true';
+      disclaimerToggle.setAttribute('aria-expanded', String(!isOpen));
+      disclaimerPanel.hidden = isOpen;
+    });
+  }
+
+  var PRIVACY_POLICY_URL = '#'; // EDIT PRIVACY POLICY LINK HERE
+  var TERMS_OF_USE_URL = '#'; // EDIT TERMS OF USE LINK HERE
+  var IOS_AFFILIATE_URL='#'; // EDIT iOS AFFILIATE LINK HERE
+  var ANDROID_AFFILIATE_URL='#'; // EDIT ANDROID AFFILIATE LINK HERE
+  var timerEl=document.getElementById('timer');
+  var seconds=20*60;
+  var iosCta=document.getElementById('iosCta');
+  var androidCta=document.getElementById('androidCta');
+  var modalOverlay=document.getElementById('modalOverlay');
+  var modalClose=document.getElementById('modalClose');
+  var continueBtn=document.getElementById('continueBtn');
+  var pendingAffiliateURL='';
+  var privacyLink=document.getElementById('privacyLink');
+  var termsLink=document.getElementById('termsLink');
+  var disclaimerToggle=document.getElementById('disclaimerToggle');
+  var disclaimerPanel=document.getElementById('disclaimerPanel');
+
+  function renderTimer(){
+    var m=String(Math.floor(seconds/60)).padStart(2,'0');
+    var s=String(seconds%60).padStart(2,'0');
+    timerEl.textContent=m+':'+s;
+  }
+  renderTimer();
+  setInterval(function(){ if(seconds>0){ seconds--; renderTimer(); } },1000);
+
+
+  function openAgeGate(url){
+    pendingAffiliateURL=url;
+    modalOverlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeAgeGate(){
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  if(iosCta){
+    iosCta.addEventListener('click',function(e){
+      e.preventDefault();
+      openAgeGate(IOS_AFFILIATE_URL);
+    });
+  }
+  if(androidCta){
+    androidCta.addEventListener('click',function(e){
+      e.preventDefault();
+      openAgeGate(ANDROID_AFFILIATE_URL);
+    });
+  }
+  if(modalClose) modalClose.addEventListener('click',closeAgeGate);
+  if(modalOverlay) modalOverlay.addEventListener('click',function(e){if(e.target===modalOverlay) closeAgeGate();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') closeAgeGate();});
+  if(continueBtn){
+    continueBtn.addEventListener('click',function(){
+      if(pendingAffiliateURL && pendingAffiliateURL !== '#'){
+        window.location.href=pendingAffiliateURL;
+      }
+    });
+  }
+
+  // Footer legal links + disclaimer dropdown
+  if (privacyLink) privacyLink.href = PRIVACY_POLICY_URL;
+  if (termsLink) termsLink.href = TERMS_OF_USE_URL;
+
+  if (disclaimerToggle && disclaimerPanel) {
+    disclaimerToggle.onclick = function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      var isOpen = disclaimerToggle.getAttribute('aria-expanded') === 'true';
+      disclaimerToggle.setAttribute('aria-expanded', String(!isOpen));
+
+      if (isOpen) {
+        disclaimerPanel.setAttribute('hidden', '');
+      } else {
+        disclaimerPanel.removeAttribute('hidden');
+      }
+    };
+  }
+
+})();
+</script>
+
+</body>
+</html>
